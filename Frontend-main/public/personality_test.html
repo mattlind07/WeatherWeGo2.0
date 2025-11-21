@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personality Test</title>
+  <link rel="stylesheet" href="site.css" />
+  <script defer src="quiz.js"></script>
+  <script defer src="main.js"></script>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar__container">
+      <a href="index.html" id="navbar__logo">WeatherWeGo</a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a href="index.html" class="navbar__links">Home</a>
+        </li>
+        <li class="navbar__item">
+          <a href="map.html" class="navbar__links">Map</a>
+        </li>
+        <li class="navbar__item">
+          <a href="walkability.html" class="navbar__links">Find a Walkability</a>
+        </li>
+        <li class="navbar__item">
+          <a href="personality_test.html" class="navbar__links" style="color: #fe938c">Personality Test</a>
+        </li>
+        <li class="navbar__btn">
+          <a href="login.html" class="button">Log In</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Section -->
+  <div class="main personality--main">
+    <div class="main__container vertical-layout">
+      <div class="main__content hidden">
+        <h1>Personality Test</h1>
+        <h2>Discover Your Ideal Weather Match</h2>
+        <p>Choose the answer that best represents you!</p>
+      </div>
+
+      <!-- Personality Test -->
+      <div class="personality__test">
+        <div class="progress-container horizontal"> <!--progress bar-->
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>        
+
+        <h2 class="question">Random question here</h2>
+
+        <div class="options-container">
+          <button class="option" onclick="selectAnswer(0)">
+            <img src="images/default.png" alt="Option 1" />
+            <p>Option 1 description</p>
+          </button>
+          <button class="option" onclick="selectAnswer(1)">
+            <img src="images/default.png" alt="Option 2" />
+            <p>Option 2 description</p>
+          </button>
+          <button class="option" onclick="selectAnswer(2)">
+            <img src="images/default.png" alt="Option 3" />
+            <p>Option 3 description</p>
+          </button>
+          <button class="option" onclick="selectAnswer(3)">
+            <img src="images/default.png" alt="Option 4" />
+            <p>Option 4 description</p>
+          </button>
+        </div>
+
+        <button id="backButton" onclick="backButton()" class="main__btn" style="display: none;">Back</button>
+      </div>
+
+      <!-- Results -->
+      <div id="results-container" style="display: none;">
+        <h2>Your Quiz Results</h2>
+        <p id="quizOutcome"></p>
+        <img src="images/default.png" alt="Result Image" style="display: none;" />
+        <button id="retakeButton" onclick="retakeQuiz()" class="main__btn" style="display: none;">Retake Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="footer__container">
+    <div class="footer__links">
+        <div class="footer__link--wrapper">
+            <div class="footer__link--items">
+                <h2>The Team</h2>
+                <a href="/">Braiden Pysher</a>
+                <a href="/">Sam Guglielmino</a>
+                <a href="/">Chuck Dunne</a>
+                <a href="/">Zoe Bailey</a>
+                <a href="/">Zachary Haufe</a>
+                <a href="/">Travor Dinh</a>
+                <a href="/">Matthew Lindsay</a>
+                <a href="/">Wesley Davis</a>
+            </div>
+        </div>
+    </div>
+    <div class="social__media">
+        <div class="social__media--wrap">
+            <div class="footer__logo">
+                <a href="/public/index.html" id="footer__logo"><i class="wwg-logo">
+                </i>WeatherWeGo</a>
+            </div>
+            <p class="website__rights">© WeatherWeGo 2025. All rights reserved</p>
+        </div>
+    </div>
+</div>
+
+  <!-- Fade-in animation trigger -->
+  <script>
+    document.querySelectorAll('.hidden').forEach(el => el.classList.add('show'));
+  </script>
+</body>
+
+</html>

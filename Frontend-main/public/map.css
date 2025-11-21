@@ -1,0 +1,17 @@
+
+#map {
+    height: 400px;      
+    width: 75%;        
+  
+    /* Simple visual touches */
+    border: 2px solid black;  
+    border-radius: 8px;       
+    margin: 16px auto;        
+  }
+  
+  
+  .leaflet-control-zoom {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  

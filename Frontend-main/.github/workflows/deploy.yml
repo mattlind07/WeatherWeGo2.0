@@ -1,0 +1,38 @@
+# Workflow name shown in GitHub Actions
+name: Azure Static Web Apps CI/CD
+
+
+# Triggers: run on push to demo2 branch or manual dispatch
+on:
+  push:
+    branches:
+      - demo2          # Only fire this workflow when demo2 branch is pushed
+  workflow_dispatch:   # Allow manual triggering from the Actions UI
+
+jobs:
+  build_and_deploy:    # Job identifier
+    runs-on: ubuntu-latest   # Host runner image
+
+    steps:
+
+      # Step 1: Check out the repo without trying to fetch any submodules
+      - uses: actions/checkout@v3
+
+      # Super Secret Side Step: build using the vroated Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install Dependencies
+        working-directory: backend
+        run: npm ci
+
+      # Step 2: Build the React app and upload to Azure Static Web Apps
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: cs330-2025-01-group02-backend
+          publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE }}
+          package: backend                         
+          

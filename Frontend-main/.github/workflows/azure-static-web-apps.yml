@@ -1,0 +1,50 @@
+# Workflow name shown in GitHub Actions
+name: Azure Static Web Apps CI/CD
+
+
+# Triggers: run on push to demo2 branch or manual dispatch
+on:
+  push:
+    branches:
+      - demo2          # Only fire this workflow when demo2 branch is pushed
+  workflow_dispatch:   # Allow manual triggering from the Actions UI
+
+jobs:
+  build_and_deploy:    # Job identifier
+    runs-on: ubuntu-latest   # Host runner image
+
+
+    # Environment variables available during the build step
+    env:
+      REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}  # Inject backend URL at build time
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}  # Add JWT secret for authentication
+
+    steps:
+
+      # Step 1: Check out the repo without trying to fetch any submodules
+      - uses: actions/checkout@v3
+
+      # Super Secret Side Step: build using the vroated Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        working-directory: backend
+        run: npm install
+
+      # Step 2: Build the React app and upload to Azure Static Web Apps
+      - name: Build and Deploy
+        uses: Azure/static-web-apps-deploy@v1  # Official SWA deployment action
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}  # Auth token for Azure
+          repo_token:                                ${{ secrets.GITHUB_TOKEN }}              # GitHub token for status updates
+          action:                                    upload                                 # Deploy build output
+          app_location:                              public                              # Folder containing your SPA source
+          output_location:                           ""                              # Folder with production build artifacts
+          api_location:                    api                                      # Location of Azure Functions code
+          data_api_location:               swa-db-connections                       # Location of database config
+          skip_app_build:                  true                                     # Skip building the app
+
+          

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        button { padding: 10px; margin: 5px; cursor: pointer; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; overflow: auto; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>API Connection Test</h1>
+    
+    <div>
+        <h2>Test GET Request</h2>
+        <button id="testGet">Test GET /rest/users</button>
+        <button id="testGetDirect">Test GET /users</button>
+        <button id="testGetApi">Test GET /api/rest/users</button>
+        <button id="testGetDataApi">Test GET /data-api/rest/users</button>
+    </div>
+
+    <div>
+        <h2>Test POST Request</h2>
+        <button id="testPost">Test POST /rest/users</button>
+        <button id="testPostDirect">Test POST /users</button>
+        <button id="testPostApi">Test POST /api/rest/users</button>
+        <button id="testPostDataApi">Test POST /data-api/rest/users</button>
+    </div>
+
+    <div>
+        <h2>Results</h2>
+        <pre id="results">Click a button to test an endpoint...</pre>
+    </div>
+
+    <script>
+        // Helper function to display results
+        function showResult(data, success = true) {
+            const resultsElement = document.getElementById('results');
+            resultsElement.className = success ? 'success' : 'error';
+            resultsElement.textContent = typeof data === 'object' ? 
+                JSON.stringify(data, null, 2) : data.toString();
+        }
+
+        // Test GET requests
+        document.getElementById('testGet').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/rest/users');
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    data: response.status === 200 ? await response.json() : null
+                }, response.ok);
+            } catch (error) {
+                showResult(`Error: ${error.message}`, false);
+            }
+        });
+
+        document.getElementById('testGetDirect').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/users');
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    data: response.status === 200 ? await response.json() : null
+                }, response.ok);
+            } catch (error) {
+                showResult(`Error: ${error.message}`, false);
+            }
+        });
+
+        document.getElementById('testGetApi').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/rest/users');
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    data: response.status === 200 ? await response.json() : null
+                }, response.ok);
+            } catch (error) {
+                showResult(`Error: ${error.message}`, false);
+            }
+        });
+
+        document.getElementById('testGetDataApi').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/data-api/rest/users');
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    data: response.status === 200 ? await response.json() : null
+                }, response.ok);
+            } catch (error) {
+                showResult(`Error: ${error.message}`, false);
+            }
+        });
+
+        // Test POST requests
+        document.getElementById('testPost').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/rest/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: 'testuser',
+                        password: 'testpassword123'
+                    })
+                });
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    data: response.status === 200 || response.status === 201 ? await response.json() : null
+                }, response.ok);
+            } catch (error) {
+                showResult(`Error: ${error.message}`, false);
+            }
+        });
+
+        document.getElementById('testPostDirect').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: 'testuser',
+                        password: 'testpassword123'
+                    })
+                });
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    data: response.status === 200 || response.status === 201 ? await response.json() : null
+                }, response.ok);
+            } catch (error) {
+                showResult(`Error: ${error.message}`, false);
+            }
+        });
+
+        document.getElementById('testPostApi').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/rest/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: 'testuser',
+                        password: 'testpassword123'
+                    })
+                });
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    data: response.status === 200 || response.status === 201 ? await response.json() : null
+                }, response.ok);
+            } catch (error) {
+                showResult(`Error: ${error.message}`, false);
+            }
+        });
+
+        document.getElementById('testPostDataApi').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/data-api/rest/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: 'testuser',
+                        password: 'testpassword123'
+                    })
+                });
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    data: response.status === 200 || response.status === 201 ? await response.json() : null
+                }, response.ok);
+            } catch (error) {
+                showResult(`Error: ${error.message}`, false);
+            }
+        });
+    </script>
+</body>
+</html>

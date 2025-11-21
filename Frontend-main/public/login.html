@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href='site.css' rel='stylesheet'>
+    <title>Weather We Go Login</title>
+</head>
+
+<body>
+    <div class="register">
+        <div class="overlay"></div>
+        <div class="box">
+            <h1>Weather We Go</h1>
+        <div class="container">
+            <div class="left">
+                <h3>Welcome Back!</h3>
+
+        <form id="loginForm">  
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username:" required><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password:" required><br>
+            
+            <button type="submit">Login</button>
+        </form>
+        
+        <p id="loginMessage"></p>
+
+        <p>
+        <p>New to Weather We Go?<a href="register.html"> Create an account!<br></a></p>
+            <p>Or <a href="index.html">continue as a guest.</a></p>
+        </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const messageElement = document.getElementById('loginMessage');
+
+            messageElement.textContent = '';
+            
+            try {
+        const response = await fetch('https://weatherwego-backend.azurewebsites.net/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+                }); 
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.message || 'Login failed');
+                }
+                
+                // save the super secret JWT token
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                
+                messageElement.textContent = "Login successful! Redirecting...";
+                messageElement.style.color = "green";
+                
+                // go back to homepage
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 1000);
+                
+            } catch (error) {
+                messageElement.textContent = "Error: " + error.message;
+                messageElement.style.color = "red";
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Enabled",
+                "ssl": {
+                    "ca": "/Users/matthewlindsey/Downloads/Backend-main/AzureMySQLRootCert.pem"
+                }
+            },
+            "previewLimit": 50,
+            "server": "cs330-2025-01-group02-db.mysql.database.azure.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Mysql",
+            "username": "mysqladmin",
+            "database": "authdb",
+            "password": "EatShitPitt!2025.01"
+        }
+    ]
+}

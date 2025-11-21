@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather We Go</title>
+    <link rel="stylesheet" href="site.css">
+    <script defer src="main.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="index.html" id="navbar__logo">WeatherWeGo</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="index.html" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="map.html" class="navbar__links">Map</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="walkability.html" class="navbar__links">Find a Walkability</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="top-cities.html" class="navbar__links" style="color: #fe938c">Top Cities</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="personality_test.html" class="navbar__links">Personality Test</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="login.html" class="button">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <script src="app.js"></script>
+
+    <!-- Hero Section -->
+    <div class="main">
+        <h1 class="hero__heading">Top Cities</h1>
+        <div class="main__container">
+            <div class="main__content">
+                <!-- drop down selector -->
+                <div class="dropdown">
+                    <input type="checkbox" id="touch">
+                    <label for="touch"><span>choose filter</span></label>
+            
+                    <ul class="slide">
+                        <li><a href="#" data-filter="overall">overall</a></li>
+                        <li><a href="#" data-filter="walkable">walkability</a></li>
+                        <li><a href="#" data-filter="warmest">warmest</a></li>
+                        <li><a href="#" data-filter="coldest">coldest</a></li>
+                        <li><a href="#" data-filter="rainiest">rainiest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main__content">
+                <!-- results -->
+                <div id="results"></div>
+                <script src="top-cities.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer__container">
+        <div class="footer__links">
+            <div class="footer__link--wrapper">
+                <div class="footer__link--items">
+                    <h2>The Team</h2>
+                    <a href="/">Braiden Pysher</a>
+                    <a href="/">Sam Guglielmino</a>
+                    <a href="/">Chuck Dunne</a>
+                    <a href="/">Zoe Bailey</a>
+                    <a href="/">Zachary Haufe</a>
+                    <a href="/">Travor Dinh</a>
+                    <a href="/">Matthew Lindsay</a>
+                    <a href="/">Wesley Davis</a>
+                </div>
+            </div>
+        </div>
+        <div class="social__media">
+            <div class="social__media--wrap">
+                <div class="footer__logo">
+                    <a href="/public/index.html" id="footer__logo"><i class="wwg-logo">
+                    </i>WeatherWeGo</a>
+                </div>
+                <p class="website__rights">© WeatherWeGo 2025. All rights reserved</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
