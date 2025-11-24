@@ -5,10 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link href='site.css' rel='stylesheet'>
+    <script src="config.js"></script>
     <title>Weather We Go Registration</title>
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="index.html" id="navbar__logo">WeatherWeGo</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="index.html" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="map.html" class="navbar__links">Map</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="walkability.html" class="navbar__links">Find a Walkability</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="personality_test.html" class="navbar__links">Personality Test</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="login.html" class="button">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class ="register">
         <div class="overlay"></div>
         <div class="box">
@@ -37,7 +67,6 @@
         </div>
     </div>
 
-    <script src="config.js"></script>
     <script>
         document.getElementById('registrationForm').addEventListener('submit', async function(event) {
             event.preventDefault();

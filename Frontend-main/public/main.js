@@ -157,10 +157,27 @@ document.addEventListener("DOMContentLoaded", function() {
         const score = await calculateScore(lat, lon, year);
         const walkabilityScoreElement = document.getElementById('walkabilityScore');
         if (walkabilityScoreElement) {
-            walkabilityScoreElement.textContent = 'Score: ' + score;
+            // Update score with better formatting
+            walkabilityScoreElement.textContent = score;
+            
+            // Add score-based styling class
+            walkabilityScoreElement.classList.remove('score-excellent', 'score-good', 'score-fair', 'score-poor');
+            if (score >= 8) {
+                walkabilityScoreElement.classList.add('score-excellent');
+            } else if (score >= 6) {
+                walkabilityScoreElement.classList.add('score-good');
+            } else if (score >= 4) {
+                walkabilityScoreElement.classList.add('score-fair');
+            } else {
+                walkabilityScoreElement.classList.add('score-poor');
+            }
         }
     } catch (error) {
         console.error('Error calculating walkability score:', error);
+        const walkabilityScoreElement = document.getElementById('walkabilityScore');
+        if (walkabilityScoreElement) {
+            walkabilityScoreElement.textContent = 'N/A';
+        }
     }
 }
   

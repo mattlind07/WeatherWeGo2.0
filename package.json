@@ -2,7 +2,6 @@
   "name": "weatherwego-unified",
   "version": "2.0.0",
   "description": "WeatherWeGo - Unified Frontend and Backend for Netlify",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
