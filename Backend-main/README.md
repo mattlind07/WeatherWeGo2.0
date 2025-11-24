@@ -1,69 +1,37 @@
-# UPDATE 4/15
+# ☁️ Weather We Go – Backend
 
-# TO DO
+Weather We Go is a web application that allows users to explore destinations based on weather, climate, and walkability. The backend handles data aggregation, processing, and API interactions to power features such as extreme weather analysis, walkability indexing, and housing affordability.
 
-~~1. upload walkability index~~
+## 🧩 Features
 
-~~2. upload gazetter place file~~
+- 🌪️ **Extreme Weather Analysis**  
+  Uses NOAA’s GSOY data to identify areas with high counts of adverse weather events.
 
-~~3. run and see the current workings of pulling from the datasets~~
+- 🏘️ **Housing Affordability**  
+  Fetches Fair Market Rent (FMR) data by FIPS code using HUD’s FMR API.
 
-~~4. fix any bugs~~
+- 🚶 **Walkability Scoring**  
+  Processes and merges geographic and EPA Smart Location data for walkability evaluations.
 
-~~5. verify that it works properly and grabs the correct data and is works for majority of cities~~
+- 🔐 **User Authentication**  
+  Node.js and MySQL-based backend supporting registration, login, and session management.
 
-6. if time: try to get it on front end, sorting function, compare mode
+## 📝 Notable Files
 
-# ! NOTES !
+- `FMR/fmrService.js`
+  - Fetches 2025 HUD Fair Market Rent data by FIPS code, categorized by number of bedrooms.
 
-## FEATURES
-- converts gazetter file from txt to csv
-- reads and merges location database with walkability data
-- calculates geographic centroids from block group shapefiles
-- matches user input city names to coordinates
-- finds the nearest block group using spatial distance
-- returns the row from the walkability data associated with the city
+- `NOAAadverseweather/noaaService.js`  
+  - Retrieves historical weather data (e.g., thunderstorms, heat, wind, snow) from NOAA’s GSOY dataset and maps it to locations.
 
-## GETTING STARTED
+- `Walkability/datasets.py`  
+  - Merges Census and EPA Smart Location data using spatial joins to create usable walkability datasets.
 
-### DATA SOURCE
-- [U.S. Census Gazetteer Files (2024)](https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html)
-- [EPA Smart Location Database](https://www.epa.gov/smartgrowth/smart-location-mapping#SLD)
-- [TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html)
+## ⚙️ Technologies & Resources
 
-### PREREQUISITES
-- python
-- pandas
-- numpy
-- geopandas
-- shapely
-- scipy
-- requests
-
-install using
-```bash
-pip install -r requirements.txt
-```
-
-make sure you have the following datasets in the project directory
-- 2024_Gaz_place_national.txt
-- EPA_SmartLocationDatabase_V3_Jan_2021_Final.csv
-- cb_2022_us_bg_500k/
-
-run in terminal
-```bash
-python datasets.py
-```
-
-try city lookups by editing datasets.py and adding at the end for example
-```python
-get_walkability_from_place("Houston")
-```
-
-example output
-```bash
-Matched input 'Houston' to gazetteer name 'Houston city'
-=======================================================================
-nearest block group to 'Houston' is 482015104001
-walkability index (NatWalkInd): 16.83333333
-```
+- Node.js / Express
+- MySQL
+- NOAA GSOY API
+- HUD FMR API
+- EPA Smart Location Database
+- Python (Pandas, GeoPandas, Shapely)
