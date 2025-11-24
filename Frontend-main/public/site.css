@@ -1624,37 +1624,6 @@ REVIEW ENDS
       .walkability-score.score-poor {
         background: linear-gradient(135deg, #f44336 0%, #e57373 100%);
       }
-      
-      .walkability-details {
-        margin-top: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      
-      .walkability-badge {
-        background: linear-gradient(135deg, #e8edff 0%, #d4ddff 100%);
-        color: #000B35;
-        padding: 8px 16px;
-        border-radius: 25px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        border: 1px solid rgba(0, 55, 255, 0.2);
-        transition: all 0.2s ease;
-      }
-
-      .walkability-badge:hover {
-        background: linear-gradient(135deg, #d4ddff 0%, #c4d0ff 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 55, 255, 0.15);
-      }
-      
-      .walkability-badge i {
-        margin-right: 6px;
-        font-size: 0.9rem;
-      }
 
   .main__container.vertical-layout {
     display: flex;
