@@ -9,15 +9,22 @@ menu.addEventListener('click', function() {
     menuLinks.classList.toggle('active')
 });
 
-// Check if user is logged in
+// Check if user is logged in (check both sessionStorage and localStorage)
 function isLoggedIn() {
-  return sessionStorage.getItem('currentUser') !== null;
+  return sessionStorage.getItem('currentUser') !== null || 
+         localStorage.getItem('user') !== null ||
+         localStorage.getItem('token') !== null;
 }
 
 // Function to update UI based on login status
 function updateUIForLogin() {
   const loginButton = document.querySelector('.navbar__btn .button');
-  const currentUser = sessionStorage.getItem('currentUser');
+  
+  // Try to get user from sessionStorage first, then localStorage
+  let currentUser = sessionStorage.getItem('currentUser');
+  if (!currentUser) {
+    currentUser = localStorage.getItem('user');
+  }
   
   if (currentUser) {
       const user = JSON.parse(currentUser);
@@ -38,7 +45,10 @@ function updateUIForLogin() {
       // Add event listener for logout
       document.getElementById('logoutButton').addEventListener('click', function(e) {
           e.preventDefault();
+          // Clear all user data
           sessionStorage.removeItem('currentUser');
+          localStorage.removeItem('user');
+          localStorage.removeItem('token');
           window.location.reload();
       });
   }

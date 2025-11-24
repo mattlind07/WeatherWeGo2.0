@@ -24,13 +24,14 @@ export async function getFmr(lat, long) {
 
     console.log("Using FIPS Code:", fipsCode); // Debugging log to verify the FIPS code
 
-    // Step 2: Make an API request to the HUD FMR API using the FIPS code
+    // Step 2: Use Netlify Function to fetch FMR data (hides API token)
+    const fmrEndpoint = window.APP_CONFIG?.API_ENDPOINTS?.FMR || '/api/fmr';
     const response = await fetch(
-      `https://www.huduser.gov/hudapi/public/fmr/data/${fipsCode}`,
+      `${fmrEndpoint}?fipsCode=${fipsCode}`,
       {
+        method: 'GET',
         headers: {
-          // Authorization header with the API key 
-          Authorization: `Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI2IiwianRpIjoiYzA1YWVmZmUwNmIyN2UxNzJlMWZiZjYxOTlkYzEyZGYwZTE4YWFjZTUxODI5NGE4YTU1ZTY5N2EzYzQ0MjcwMDhlMWRhYjJjNDlhZmZkNGEiLCJpYXQiOjE3NDY0MDI0NTEuMDQyMTcyLCJuYmYiOjE3NDY0MDI0NTEuMDQyMTc0LCJleHAiOjIwNjE5MzUyNTEuMDM4MzA3LCJzdWIiOiI5NTUzNyIsInNjb3BlcyI6W119.e4aFQIsWS-FhEUqXtzKqGZsIF8Jmv0gXhv0uHk7a38378jil9ajbX-RTXKVaMuxDFHEe24CW0P54g_YVRfGAxg'}`, // needs to be in .env file or azure key vault
+          'Content-Type': 'application/json'
         }
       }
     );

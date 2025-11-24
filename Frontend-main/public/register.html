@@ -37,6 +37,7 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script>
         document.getElementById('registrationForm').addEventListener('submit', async function(event) {
             event.preventDefault();
@@ -61,7 +62,9 @@
             }
             
             try {
-        const response = await fetch('https://weatherwego-backend.azurewebsites.net/api/auth/register', {
+        // Use Netlify Function endpoint
+        const registerEndpoint = window.APP_CONFIG?.API_ENDPOINTS?.REGISTER || '/api/auth-register';
+        const response = await fetch(registerEndpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,6 +83,8 @@
                 
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
+                // Also set in sessionStorage for main.js compatibility
+                sessionStorage.setItem('currentUser', JSON.stringify(data.user));
 
                 messageElement.textContent = "Registration successful! Redirecting to login...";
                 messageElement.style.color = "green";

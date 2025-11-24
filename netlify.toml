@@ -1,0 +1,30 @@
+[build]
+  # Deploy from root - publish the Frontend-main/public directory
+  publish = "Frontend-main/public"
+  
+  # No build command needed for static site
+  # Functions will be automatically discovered
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Netlify Functions configuration
+# Functions from both Frontend-main and Backend-main will be combined
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Redirect rules for SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for CORS
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+

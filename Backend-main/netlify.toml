@@ -1,0 +1,21 @@
+[build]
+  # Backend-main is primarily serverless functions
+  # No build needed, just publish functions
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Netlify Functions configuration
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Headers for CORS
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+

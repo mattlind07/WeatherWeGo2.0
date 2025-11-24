@@ -1,0 +1,26 @@
+[build]
+  # No build command needed for static site
+  # Netlify will just serve the public directory
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Netlify Functions configuration
+# Functions should be in netlify/functions/ directory
+# Each function file becomes an endpoint at /api/[filename]
+
+# Redirect rules for SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for CORS
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+
